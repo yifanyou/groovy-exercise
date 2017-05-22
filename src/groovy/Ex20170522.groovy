@@ -246,22 +246,40 @@ class Ex20170522 {
 //        2.4. Syntax enhancements for collections
 //
 //        2.4.1. GPath support
-        def listOfMaps = [['a': 11, 'b': 12], ['a': 21, 'b': 22]]
-        assert listOfMaps.a == [11, 21] //GPath notation
-        assert listOfMaps*.a == [11, 21] //spread dot notation
+//        def listOfMaps = [['a': 11, 'b': 12], ['a': 21, 'b': 22]]
+//        assert listOfMaps.a == [11, 21] //GPath notation
+//        assert listOfMaps*.a == [11, 21] //spread dot notation
+//
+//        listOfMaps = [['a': 11, 'b': 12], ['a': 21, 'b': 22], null]
+//        assert listOfMaps*.a == [11, 21, null] // caters for null values
+//        assert listOfMaps*.a == listOfMaps.collect { it?.a } //equivalent notation
+//// But this will only collect non-null values
+//        assert listOfMaps.a == [11,21]
 
-        listOfMaps = [['a': 11, 'b': 12], ['a': 21, 'b': 22], null]
-        assert listOfMaps*.a == [11, 21, null] // caters for null values
-        assert listOfMaps*.a == listOfMaps.collect { it?.a } //equivalent notation
-// But this will only collect non-null values
-        assert listOfMaps.a == [11,21]
+//        2.4.2. Spread operator
+//        assert [ 'z': 900,
+//                 *: ['a': 100, 'b': 200], 'a': 300] == ['a': 300, 'b': 200, 'z': 900]
+////spread map notation in map definition
+//        assert [*: [3: 3, *: [5: 5]], 7: 7] == [3: 3, 5: 5, 7: 7]
+//
+//        def f = { [1: 'u', 2: 'v', 3: 'w'] }
+//        assert [*: f(), 10: 'zz'] == [1: 'u', 10: 'zz', 2: 'v', 3: 'w']
+////spread map notation in function arguments
+//        f = { map -> map.c }
+//        assert f(*: ['a': 10, 'b': 20, 'c': 30], 'e': 50) == 30
+//
+//        f = { m, i, j, k -> [m, i, j, k] }
+////using spread map notation with mixed unnamed and named arguments
+//        assert f('e': 100, *[4, 5], *: ['a': 10, 'b': 20, 'c': 30], 6) ==
+//                [["e": 100, "b": 20, "c": 30, "a": 10], 4, 5, 6]
 
 
-
-
-
-
-
+//        2.4.3. The star-dot `*.' operator
+//        assert [1, 3, 5] == ['a', 'few', 'words']*.size()
+//
+//
+//        def persons = [new Person(name:'Hugo', age:17), new Person(name:'Sandra',age:19)]
+//        assert [17, 19] == persons*.age
 
 
 
