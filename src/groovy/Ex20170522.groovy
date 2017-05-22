@@ -282,6 +282,91 @@ class Ex20170522 {
 //        assert [17, 19] == persons*.age
 
 
+//        2.4.4. Slicing with the subscript operator
+//        def text = 'nice cheese gromit!'
+//        def x = text[2]
+//
+//        assert x == 'c'
+//        assert x.class == String
+//
+//        def sub = text[5..10]
+//        assert sub == 'cheese'
+//
+//        def list = [10, 11, 12, 13]
+//        def answer = list[2,3]
+//        assert answer == [12,13]
+//
+//        list = 100..200
+//        sub = list[1, 3, 20..25, 33]
+//        assert sub == [101, 103, 120, 121, 122, 123, 124, 125, 133]
+//
+//
+//        list = ['a','x','x','d']
+//        list[1..2] = ['b','c']
+//        assert list == ['a','b','c','d']
+//
+//        text = "nice cheese gromit!"
+//        x = text[-1]
+//        assert x == "!"
+//
+//        def name = text[-7..-2]
+//        assert name == "gromit"
+//
+//        text = "nice cheese gromit!"
+//        name = text[3..1]
+//        assert name == "eci"
+
+
+//        3. Handy utilities
+//
+//        3.1. ConfigSlurper
+//        def config = new ConfigSlurper().parse('''
+//    app.date = new Date()
+//    app.age  = 42
+//    app {
+//        name = "Test${42}"
+//    }
+//''')
+//
+//        assert config.app.date instanceof Date
+//        assert config.app.age == 42
+//        assert config.app.name == 'Test42'
+
+//        def config = new ConfigSlurper().parse('''
+//    app.date = new Date()
+//    app.age  = 42
+//    app.name = "Test${42}"
+//''')
+//
+//        assert config.test != null
+//        println config.test
+
+//        def config = new ConfigSlurper().parse('''
+//    app."person.age"  = 42
+//''')
+//
+//        assert config.app."person.age" == 42
+
+        def config = new ConfigSlurper('development').parse('''
+  environments {
+       development {
+           app.port = 8080
+       }
+
+       test {
+           app.port = 8082
+       }
+
+       production {
+           app.port = 80
+       }
+  }
+''')
+
+        assert config.app.port == 8080
+
+
+
 
 
 
